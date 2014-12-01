@@ -13,6 +13,7 @@ type
     Label1: TLabel;
     Button2: TButton;
     Button3: TButton;
+    Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -88,14 +89,32 @@ var
    LocalClientId:integer;
    summa:real;
    date_from,date_to:TDateTime;
+   bufferClient:TbuferClientRecord;
+   zapros:TAdoQuery;
+
 begin
-
-   LocalClientId:=55;
-
    mySqlOpkas:=TMySqlOpkas.create;
    mySqlOpkas.Connect;
-   summa:=mySqlOpkas.getSumVidanoHrn(LocalClientId,date_from,date_to);
 
+   LocalClientId:=7232;
+   date_from:=StrToDateTime('01.01.2001 00:00:01');
+   date_to:=StrToDateTime('01.01.2015 23:59:59');
+   //--
+   summa:=-1;
+   Zapros:=TADOQuery.Create(nil);
+   Zapros.Connection:=ADOConnection1;
+   Zapros.SQL.Clear;
+   Zapros.SQL.Add('select * from clients where id='+IntToStr(LocalClientId));
+   Zapros.Open;
+
+   if not zapros.IsEmpty then
+   begin
+     mySqlOpkas:=TMySqlOpkas.create;
+     mySqlOpkas.Connect;
+
+     mySqlOpkas.ClientToBufer(Zapros,bufferClient);
+     summa:=mySqlOpkas.getSumVidanoHrn(bufferClient,date_from,date_to);
+   end;
 
    ShowMessage(FloatToStr(summa));
 

@@ -1,5 +1,5 @@
 object Form1: TForm1
-  Left = 215
+  Left = 209
   Top = 472
   Width = 501
   Height = 259
@@ -14,15 +14,15 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 240
-    Top = 112
+    Left = 440
+    Top = 8
     Width = 32
     Height = 13
     Caption = 'Label1'
   end
   object Button1: TButton
     Left = 88
-    Top = 56
+    Top = 16
     Width = 75
     Height = 25
     Caption = 'Button1'
@@ -31,7 +31,7 @@ object Form1: TForm1
   end
   object Button2: TButton
     Left = 216
-    Top = 56
+    Top = 16
     Width = 75
     Height = 25
     Caption = 'Button2'
@@ -40,12 +40,19 @@ object Form1: TForm1
   end
   object Button3: TButton
     Left = 344
-    Top = 56
+    Top = 16
     Width = 75
     Height = 25
     Caption = 'Button3'
     TabOrder = 2
     OnClick = Button3Click
+  end
+  object Memo1: TMemo
+    Left = 96
+    Top = 88
+    Width = 257
+    Height = 89
+    TabOrder = 3
   end
   object ADOConnection1: TADOConnection
     Connected = True
